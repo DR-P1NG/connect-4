@@ -48,9 +48,9 @@ function claimCell(cellId){
 function victoryCheck(cellId){
   var connectedCount = 1;
   // checkVertical(cellId);
-  // checkHorizontal(cellId);
+  checkHorizontal(cellId);
   checkDiagonalLeft(cellId);
-  // checkDiagonalRight(cellId);
+  checkDiagonalRight(cellId);
 }
 
 function checkVertical(cellId) {
@@ -73,7 +73,7 @@ function checkVertical(cellId) {
 }
 
 function checkHorizontal(cellId) {
-  console.log("check horinzontal");
+  console.log("check horizontal");
   var count = 0;
   var count2 = 0;
 
@@ -82,25 +82,37 @@ function checkHorizontal(cellId) {
     if (index > -1) {
       count += 1;
       console.log("uploading count...");
-      if ((cellId + i) % 7 == 0 || (cellId) % 7 == 0) {
+      if ((cellId + i) % boardWidth == 0 || (cellId) % boardWidth == 0 || index == -1) {
         console.log("break");
         break;
       }
-    } 
+    } else if (index == -1) {
+      break;
+    } else {
+      stop = true;
+    }
   }
   for (var i= 0; i<= 3; i++) {
     const index2 = cellRegistry[activePlayer].indexOf(cellId - i);
+    
     if (index2 > -1) {
       count2 += 1;
       console.log("uploading count2...");
-      if ((cellId - 1 - i)  % 7 == 0 || (cellId - 1) % 7 == 0) {
+      if ((cellId - 1 - i)  % boardWidth == 0 || (cellId - 1) % boardWidth == 0 || index2 == -1) {
         console.log("break");
         break;
       }
-    } 
+    } else if (index2 == -1) {
+      break;
+    } else {
+      stop = true;
+    }
   }
 
+  console.log(count2 + count);
   if (count == 4 || count2 == 4 || count + count2 >= 5) {
+    console.log("count:" + count);
+    console.log("count2:" + count2);
     console.log("horizontal win");
     alert(activePlayer + " win")
     stop = true;
@@ -114,28 +126,38 @@ function checkDiagonalLeft(cellId) {
 
   for (var i= 0; i<= 3; i++) {
     const index = cellRegistry[activePlayer].indexOf(cellId + ((boardWidth - 1) * i));
-    if (index > -1){
+    if (index != -1){
       count += 1;
       console.log("uploading count...");
-      if (((cellId + ((boardWidth - 1) * i)) - 1) % 7 == 0 || (cellId - 1) % 7 == 0) {
+      if (((cellId + ((boardWidth - 1) * i)) - 1) % boardWidth == 0 || (cellId - 1) % boardWidth == 0) {
         console.log("break");
         break;
       }
+    } else if (index == -1) {
+      break;
+    } else {
+      stop = true;
     }
   }
   for (var i= 0; i<= 3; i++) {
     const index2 = cellRegistry[activePlayer].indexOf(cellId - ((boardWidth -1) * i));
-    if (index2 > -1){
+    if (index2 != -1){
       count2 += 1;
       console.log("uploading count2...");
-      if ((cellId - ((boardWidth - 1) * i)) % 7 == 0 || (cellId) % 7 == 0) {
+      if ((cellId - ((boardWidth - 1) * i)) % boardWidth == 0 || (cellId) % boardWidth == 0) {
         console.log("break");
         break;
       }
+    } else if (index2 == -1) {
+      break;
+    } else {
+      stop = true;
     }
   }
 
   if (count == 4 || count2 == 4 || count + count2 >= 5) {
+    console.log("count:" + count);
+    console.log("count2:" + count2);
     console.log("diagonal left win");
     alert(activePlayer + " win")
     stop = true;
@@ -149,20 +171,38 @@ function checkDiagonalRight(cellId) {
 
   for (var i= 0; i<= 3; i++) {
     const index = cellRegistry[activePlayer].indexOf(cellId + ((boardWidth + 1) * i));
-    if (index > -1){
+    if (index != -1){
       count += 1;
       console.log("uploading count...");
+      if (((cellId + ((boardWidth + 1) * i)) - 1) % boardWidth == 0 || (cellId - 1) % boardWidth == 0) {
+        console.log("break");
+        break;
+      }
+    } else if (index == -1) {
+      break;
+    } else {
+      stop = true;
     }
   }
   for (var i= 0; i<= 3; i++) {
-    const index2 = cellRegistry[activePlayer].indexOf(cellId - ((boardWidth + 2) * i));
-    if (index2 > -1){
+    const index2 = cellRegistry[activePlayer].indexOf(cellId - ((boardWidth + 1) * i));
+    if (index2 != -1){
       count2 += 1;
       console.log("uploading count2...");
+      if ((cellId - ((boardWidth + 1) * i)) % boardWidth == 0 || (cellId) % boardWidth == 0) {
+        console.log("break");
+        break;
+      }
+    } else if (index2 == -1) {
+      break;
+    } else {
+      stop = true;
     }
   }
 
   if (count == 4 || count2 == 4 || count + count2 >= 5) {
+    console.log("count:" + count);
+    console.log("count2:" + count2);
     console.log("diagonal right win");
     alert(activePlayer + " win")
     stop = true;
