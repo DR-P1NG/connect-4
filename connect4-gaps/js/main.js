@@ -82,7 +82,7 @@ function checkHorizontal(cellId) {
     if (index > -1) {
       count += 1;
       console.log("uploading count...");
-      if ((cellId + i) % boardWidth == 0 || (cellId) % boardWidth == 0 || index == -1) {
+      if ((cellId + i) % boardWidth == 0) {
         console.log("break");
         break;
       }
@@ -98,7 +98,7 @@ function checkHorizontal(cellId) {
     if (index2 > -1) {
       count2 += 1;
       console.log("uploading count2...");
-      if ((cellId - 1 - i)  % boardWidth == 0 || (cellId - 1) % boardWidth == 0 || index2 == -1) {
+      if ((cellId - 1 - i)  % boardWidth == 0) {
         console.log("break");
         break;
       }
@@ -129,7 +129,7 @@ function checkDiagonalLeft(cellId) {
     if (index != -1){
       count += 1;
       console.log("uploading count...");
-      if (((cellId + ((boardWidth - 1) * i)) - 1) % boardWidth == 0 || (cellId - 1) % boardWidth == 0) {
+      if (((cellId + ((boardWidth - 1) * i)) - 1) % boardWidth == 0) {
         console.log("break");
         break;
       }
@@ -144,7 +144,7 @@ function checkDiagonalLeft(cellId) {
     if (index2 != -1){
       count2 += 1;
       console.log("uploading count2...");
-      if ((cellId - ((boardWidth - 1) * i)) % boardWidth == 0 || (cellId) % boardWidth == 0) {
+      if ((cellId - ((boardWidth - 1) * i)) % boardWidth == 0) {
         console.log("break");
         break;
       }
@@ -174,7 +174,7 @@ function checkDiagonalRight(cellId) {
     if (index != -1){
       count += 1;
       console.log("uploading count...");
-      if (((cellId + ((boardWidth + 1) * i)) - 1) % boardWidth == 0 || (cellId - 1) % boardWidth == 0) {
+      if (((cellId + ((boardWidth + 1) * i)) - 1) % boardWidth == 0) {
         console.log("break");
         break;
       }
@@ -189,7 +189,7 @@ function checkDiagonalRight(cellId) {
     if (index2 != -1){
       count2 += 1;
       console.log("uploading count2...");
-      if ((cellId - ((boardWidth + 1) * i)) % boardWidth == 0 || (cellId) % boardWidth == 0) {
+      if ((cellId - ((boardWidth + 1) * i)) % boardWidth == 0) {
         console.log("break");
         break;
       }
